@@ -2,13 +2,16 @@
 
 Interactive Data Structures & Algorithms Toolkit - A comprehensive web application for learning and visualizing essential algorithms.
 
+AlgoStruct brings core data structures and algorithms to life through interactive demos, step-by-step visualizations, clean implementations, and clear complexity insights—making DSA easier to learn, explore, and master.
+
 ## Features
 
 - **Sorting Algorithms**: Bubble, Selection, Insertion, Merge, and Quick Sort with step-by-step visualization
-- **Linked List Operations**: Create, delete, reverse, and cycle detection
-- **Graph Algorithms**: BFS, DFS, and Dijkstra's shortest path
-- **Binary Search Tree**: Build trees and visualize all traversal methods
+- **Linked List Operations**: Create, delete, reverse, and cycle detection (Floyd's algorithm)
+- **Graph Algorithms**: BFS, DFS, and Dijkstra's shortest path with interactive graph creation
+- **Binary Search Tree**: Build trees and visualize all traversal methods (inorder, preorder, postorder)
 - **Dynamic Programming**: 0/1 Knapsack problem solver with DP table visualization
+- **Binary Search**: Interactive binary search visualization
 
 ## Local Development
 
@@ -53,4 +56,3 @@ The application will be live at `https://your-app-name.onrender.com`
 ## Author
 
 Made by Milind Kashyap
-

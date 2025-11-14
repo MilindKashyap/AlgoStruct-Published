@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlgoStruct - Interactive Algorithms</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🚀 AlgoStruct</h1>
+            <p class="subtitle">Interactive Data Structures & Algorithms Toolkit</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#sorting">Sorting</a></li>
+                <li><a href="#linkedlist">Linked List</a></li>
+                <li><a href="#graph">Graphs</a></li>
+                <li><a href="#bst">BST</a></li>
+                <li><a href="#dp">Dynamic Programming</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="hero">
+            <div class="container">
+                <h2>Welcome to AlgoStruct</h2>
+                <p>A comprehensive, interactive toolkit for learning and visualizing essential data structures and algorithms.</p>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="icon">📊</div>
+                        <h3>Sorting Algorithms</h3>
+                        <p>Visualize 5 sorting algorithms with step-by-step animations</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🕸️</div>
+                        <h3>Graph Algorithms</h3>
+                        <p>BFS, DFS, Dijkstra with interactive graph visualization</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🌳</div>
+                        <h3>Binary Search Tree</h3>
+                        <p>Insert, delete, search with all traversal methods</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">💼</div>
+                        <h3>Dynamic Programming</h3>
+                        <p>0/1 Knapsack problem solver with visualization</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🔍</div>
+                        <h3>Binary Search</h3>
+                        <p>Interactive binary search visualization</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🔗</div>
+                        <h3>Linked Lists</h3>
+                        <p>Create, reverse, delete values, and detect cycles</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sorting Section -->
+        <section id="sorting" class="section">
+            <div class="container">
+                <h2>Sorting Visualizer</h2>
+                <div class="algorithm-selector">
+                    <button class="algo-btn active" data-algo="bubble">Bubble Sort</button>
+                    <button class="algo-btn" data-algo="selection">Selection Sort</button>
+                    <button class="algo-btn" data-algo="insertion">Insertion Sort</button>
+                    <button class="algo-btn" data-algo="merge">Merge Sort</button>
+                    <button class="algo-btn" data-algo="quick">Quick Sort</button>
+                </div>
+                
+                <div class="controls">
+                    <input type="text" id="sort-input" placeholder="Enter numbers (e.g., 5 1 4 2 8)" value="5 1 4 2 8">
+                    <button id="sort-btn" class="btn-primary">Sort</button>
+                    <button id="sort-reset" class="btn-secondary">Reset</button>
+                </div>
+                
+                <div id="sort-visualization" class="visualization"></div>
+                <div id="sort-steps" class="steps-container"></div>
+            </div>
+        </section>
+
+        <!-- Linked List Section -->
+        <section id="linkedlist" class="section">
+            <div class="container">
+                <h2>Linked List Operations</h2>
+                <div class="ll-controls">
+                    <input type="text" id="ll-input" placeholder="Enter values (e.g., 1 2 3 4 5)" value="1 2 3 4 5">
+                    <button id="ll-create" class="btn-primary">Create List</button>
+                </div>
+                
+                <div class="ll-operations">
+                    <h3>Operations</h3>
+                    <div class="ll-op-buttons">
+                        <input type="number" id="ll-delete-val" placeholder="Value to delete">
+                        <button id="ll-delete" class="btn-primary">Delete Value</button>
+                        <button id="ll-reverse" class="btn-primary">Reverse List</button>
+                        <button id="ll-check-cycle" class="btn-primary">Check Cycle</button>
+                    </div>
+                </div>
+                
+                <div id="ll-visualization" class="ll-visualization"></div>
+                <div id="ll-result" class="result-box"></div>
+            </div>
+        </section>
+
+        <!-- Graph Section -->
+        <section id="graph" class="section">
+            <div class="container">
+                <h2>Graph Algorithms</h2>
+                <div class="graph-controls">
+                    <div class="graph-input">
+                        <h3>Create Graph</h3>
+                        <textarea id="graph-edges" placeholder="Enter edges (format: 0,1,4 means edge from 0 to 1 with weight 4)&#10;Example:&#10;0,1,4&#10;0,2,1&#10;1,2,2&#10;1,3,5&#10;2,3,8"></textarea>
+                        <button id="graph-create" class="btn-primary">Create Graph</button>
+                    </div>
+                    <div class="graph-algorithms">
+                        <h3>Run Algorithm</h3>
+                        <input type="number" id="graph-start" placeholder="Start vertex" value="0">
+                        <button id="graph-bfs" class="btn-primary">BFS</button>
+                        <button id="graph-dfs" class="btn-primary">DFS</button>
+                        <button id="graph-dijkstra" class="btn-primary">Dijkstra</button>
+                    </div>
+                </div>
+                <div id="graph-visualization" class="graph-canvas"></div>
+                <div id="graph-result" class="result-box"></div>
+            </div>
+        </section>
+
+        <!-- BST Section -->
+        <section id="bst" class="section">
+            <div class="container">
+                <h2>Binary Search Tree</h2>
+                <div class="bst-controls">
+                    <input type="text" id="bst-input" placeholder="Enter values (e.g., 5 3 7 2 4 6 8)" value="5 3 7 2 4 6 8">
+                    <button id="bst-build" class="btn-primary">Build Tree</button>
+                    <button id="bst-inorder" class="btn-secondary">Inorder</button>
+                    <button id="bst-preorder" class="btn-secondary">Preorder</button>
+                    <button id="bst-postorder" class="btn-secondary">Postorder</button>
+                </div>
+                <div id="bst-visualization" class="tree-visualization"></div>
+                <div id="bst-result" class="result-box"></div>
+            </div>
+        </section>
+
+        <!-- DP Section -->
+        <section id="dp" class="section">
+            <div class="container">
+                <h2>0/1 Knapsack Problem</h2>
+                <div class="knapsack-input">
+                    <div>
+                        <label>Weights:</label>
+                        <input type="text" id="knap-weights" placeholder="1 3 4" value="1 3 4">
+                    </div>
+                    <div>
+                        <label>Values:</label>
+                        <input type="text" id="knap-values" placeholder="15 50 60" value="15 50 60">
+                    </div>
+                    <div>
+                        <label>Capacity:</label>
+                        <input type="number" id="knap-capacity" placeholder="5" value="5">
+                    </div>
+                    <button id="knap-solve" class="btn-primary">Solve</button>
+                </div>
+                <div id="knap-result" class="result-box"></div>
+                <div id="knap-table" class="dp-table"></div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="container">
+                <h2>About</h2>
+                <div class="about-content">
+                    <p>AlgoStruct is a comprehensive educational tool for learning data structures and algorithms. 
+                    It provides interactive visualizations and step-by-step demonstrations of essential algorithms.</p>
+                    
+                    <h3>Complexity Analysis</h3>
+                    <table class="complexity-table">
+                        <thead>
+                            <tr>
+                                <th>Algorithm</th>
+                                <th>Best</th>
+                                <th>Average</th>
+                                <th>Worst</th>
+                                <th>Space</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Bubble Sort</td><td>O(n)</td><td>O(n²)</td><td>O(n²)</td><td>O(1)</td></tr>
+                            <tr><td>Selection Sort</td><td>O(n²)</td><td>O(n²)</td><td>O(n²)</td><td>O(1)</td></tr>
+                            <tr><td>Insertion Sort</td><td>O(n)</td><td>O(n²)</td><td>O(n²)</td><td>O(1)</td></tr>
+                            <tr><td>Merge Sort</td><td>O(n log n)</td><td>O(n log n)</td><td>O(n log n)</td><td>O(n)</td></tr>
+                            <tr><td>Quick Sort</td><td>O(n log n)</td><td>O(n log n)</td><td>O(n²)</td><td>O(log n)</td></tr>
+                            <tr><td>Binary Search</td><td>O(1)</td><td>O(log n)</td><td>O(log n)</td><td>O(1)</td></tr>
+                            <tr><td>BFS/DFS</td><td>O(V+E)</td><td>O(V+E)</td><td>O(V+E)</td><td>O(V)</td></tr>
+                            <tr><td>Dijkstra</td><td>O((V+E) log V)</td><td>O((V+E) log V)</td><td>O((V+E) log V)</td><td>O(V)</td></tr>
+                            <tr><td>0/1 Knapsack</td><td>O(nW)</td><td>O(nW)</td><td>O(nW)</td><td>O(W)</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Made by Milind Kashyap</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

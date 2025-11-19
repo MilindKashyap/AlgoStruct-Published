@@ -19,6 +19,9 @@
             <ul>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#sorting">Sorting</a></li>
+                <li><a href="#string">String</a></li>
+                <li><a href="#stackqueue">Stack/Queue</a></li>
+                <li><a href="#binarysearch">Binary Search</a></li>
                 <li><a href="#linkedlist">Linked List</a></li>
                 <li><a href="#graph">Graphs</a></li>
                 <li><a href="#bst">BST</a></li>
@@ -62,6 +65,16 @@
                         <p>Interactive binary search visualization</p>
                     </div>
                     <div class="feature-card">
+                        <div class="icon">📝</div>
+                        <h3>String Algorithms</h3>
+                        <p>Palindrome check and LCS length calculation</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">📚</div>
+                        <h3>Stack & Queue</h3>
+                        <p>Parentheses balance checking</p>
+                    </div>
+                    <div class="feature-card">
                         <div class="icon">🔗</div>
                         <h3>Linked Lists</h3>
                         <p>Create, reverse, delete values, and detect cycles</p>
@@ -90,6 +103,55 @@
                 
                 <div id="sort-visualization" class="visualization"></div>
                 <div id="sort-steps" class="steps-container"></div>
+            </div>
+        </section>
+
+        <!-- String Algorithms Section -->
+        <section id="string" class="section">
+            <div class="container">
+                <h2>String Algorithms</h2>
+                <div class="string-controls">
+                    <div class="string-operation">
+                        <h3>Palindrome Check</h3>
+                        <input type="text" id="palindrome-input" placeholder="Enter a string (e.g., racecar)" value="racecar">
+                        <button id="palindrome-btn" class="btn-primary">Check Palindrome</button>
+                        <div id="palindrome-result" class="result-box"></div>
+                    </div>
+                    <div class="string-operation">
+                        <h3>Longest Common Subsequence (LCS)</h3>
+                        <input type="text" id="lcs-str1" placeholder="First string (e.g., ABCDGH)" value="ABCDGH">
+                        <input type="text" id="lcs-str2" placeholder="Second string (e.g., AEDFHR)" value="AEDFHR">
+                        <button id="lcs-btn" class="btn-primary">Calculate LCS Length</button>
+                        <div id="lcs-result" class="result-box"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stack & Queue Section -->
+        <section id="stackqueue" class="section">
+            <div class="container">
+                <h2>Stack & Queue</h2>
+                <div class="stackqueue-controls">
+                    <h3>Parentheses Balance Check</h3>
+                    <p>Supports: (), [], {}</p>
+                    <input type="text" id="paren-input" placeholder="Enter string with parentheses (e.g., ([{}]))" value="([{}])">
+                    <button id="paren-btn" class="btn-primary">Check Balance</button>
+                    <div id="paren-result" class="result-box"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Binary Search Section -->
+        <section id="binarysearch" class="section">
+            <div class="container">
+                <h2>Binary Search</h2>
+                <div class="binarysearch-controls">
+                    <input type="text" id="bs-input" placeholder="Enter sorted numbers (e.g., 1 3 5 7 9 11 13 15)" value="1 3 5 7 9 11 13 15">
+                    <input type="number" id="bs-key" placeholder="Key to search" value="7">
+                    <button id="bs-btn" class="btn-primary">Search</button>
+                    <div id="bs-result" class="result-box"></div>
+                </div>
             </div>
         </section>
 
@@ -147,9 +209,29 @@
                 <div class="bst-controls">
                     <input type="text" id="bst-input" placeholder="Enter values (e.g., 5 3 7 2 4 6 8)" value="5 3 7 2 4 6 8">
                     <button id="bst-build" class="btn-primary">Build Tree</button>
-                    <button id="bst-inorder" class="btn-secondary">Inorder</button>
-                    <button id="bst-preorder" class="btn-secondary">Preorder</button>
-                    <button id="bst-postorder" class="btn-secondary">Postorder</button>
+                </div>
+                <div class="bst-operations">
+                    <h3>Operations</h3>
+                    <div class="bst-op-buttons">
+                        <input type="number" id="bst-insert-val" placeholder="Value to insert">
+                        <button id="bst-insert" class="btn-primary">Insert</button>
+                        <input type="number" id="bst-delete-val" placeholder="Value to delete">
+                        <button id="bst-delete" class="btn-primary">Delete</button>
+                        <input type="number" id="bst-search-val" placeholder="Value to search">
+                        <button id="bst-search" class="btn-primary">Search</button>
+                        <button id="bst-height" class="btn-secondary">Get Height</button>
+                    </div>
+                </div>
+                <div class="bst-traversals">
+                    <h3>Traversals</h3>
+                    <div class="bst-trav-buttons">
+                        <button id="bst-inorder-rec" class="btn-secondary">Inorder (Recursive)</button>
+                        <button id="bst-preorder-rec" class="btn-secondary">Preorder (Recursive)</button>
+                        <button id="bst-postorder-rec" class="btn-secondary">Postorder (Recursive)</button>
+                        <button id="bst-inorder-iter" class="btn-secondary">Inorder (Iterative)</button>
+                        <button id="bst-preorder-iter" class="btn-secondary">Preorder (Iterative)</button>
+                        <button id="bst-postorder-iter" class="btn-secondary">Postorder (Iterative)</button>
+                    </div>
                 </div>
                 <div id="bst-visualization" class="tree-visualization"></div>
                 <div id="bst-result" class="result-box"></div>
@@ -206,6 +288,10 @@
                             <tr><td>Merge Sort</td><td>O(n log n)</td><td>O(n log n)</td><td>O(n log n)</td><td>O(n)</td></tr>
                             <tr><td>Quick Sort</td><td>O(n log n)</td><td>O(n log n)</td><td>O(n²)</td><td>O(log n)</td></tr>
                             <tr><td>Binary Search</td><td>O(1)</td><td>O(log n)</td><td>O(log n)</td><td>O(1)</td></tr>
+                            <tr><td>Palindrome Check</td><td>O(1)</td><td>O(n)</td><td>O(n)</td><td>O(1)</td></tr>
+                            <tr><td>LCS Length</td><td>O(mn)</td><td>O(mn)</td><td>O(mn)</td><td>O(mn)</td></tr>
+                            <tr><td>Parentheses Balance</td><td>O(1)</td><td>O(n)</td><td>O(n)</td><td>O(n)</td></tr>
+                            <tr><td>BST Operations</td><td>O(log n)</td><td>O(log n)</td><td>O(n)</td><td>O(log n)</td></tr>
                             <tr><td>BFS/DFS</td><td>O(V+E)</td><td>O(V+E)</td><td>O(V+E)</td><td>O(V)</td></tr>
                             <tr><td>Dijkstra</td><td>O((V+E) log V)</td><td>O((V+E) log V)</td><td>O((V+E) log V)</td><td>O(V)</td></tr>
                             <tr><td>0/1 Knapsack</td><td>O(nW)</td><td>O(nW)</td><td>O(nW)</td><td>O(W)</td></tr>

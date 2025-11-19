@@ -540,6 +540,155 @@ function dijkstra(graph, start) {
     return dist;
 }
 
+// String Algorithms
+document.getElementById('palindrome-btn').addEventListener('click', () => {
+    const str = document.getElementById('palindrome-input').value;
+    if (!str) {
+        alert('Please enter a string!');
+        return;
+    }
+    
+    const result = isPalindrome(str);
+    document.getElementById('palindrome-result').innerHTML = 
+        `<h3>Palindrome Check</h3><p>"${str}" is ${result ? '<strong style="color: var(--secondary-color);">a palindrome</strong>' : '<strong style="color: var(--accent-color);">not a palindrome</strong>'}</p>`;
+});
+
+document.getElementById('lcs-btn').addEventListener('click', () => {
+    const str1 = document.getElementById('lcs-str1').value;
+    const str2 = document.getElementById('lcs-str2').value;
+    
+    if (!str1 || !str2) {
+        alert('Please enter both strings!');
+        return;
+    }
+    
+    const length = lcsLength(str1, str2);
+    document.getElementById('lcs-result').innerHTML = 
+        `<h3>LCS Length</h3><p>String 1: "${str1}"</p><p>String 2: "${str2}"</p><p>LCS Length: <strong>${length}</strong></p>`;
+});
+
+function isPalindrome(s) {
+    let left = 0;
+    let right = s.length - 1;
+    
+    while (left < right) {
+        if (s[left] !== s[right]) {
+            return false;
+        }
+        left++;
+        right--;
+    }
+    
+    return true;
+}
+
+function lcsLength(s1, s2) {
+    const m = s1.length;
+    const n = s2.length;
+    
+    // Create DP table
+    const dp = Array(m + 1).fill(null).map(() => Array(n + 1).fill(0));
+    
+    for (let i = 1; i <= m; i++) {
+        for (let j = 1; j <= n; j++) {
+            if (s1[i - 1] === s2[j - 1]) {
+                dp[i][j] = dp[i - 1][j - 1] + 1;
+            } else {
+                dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+            }
+        }
+    }
+    
+    return dp[m][n];
+}
+
+// Stack & Queue
+document.getElementById('paren-btn').addEventListener('click', () => {
+    const str = document.getElementById('paren-input').value;
+    if (!str) {
+        alert('Please enter a string!');
+        return;
+    }
+    
+    const result = parenthesesBalanced(str);
+    document.getElementById('paren-result').innerHTML = 
+        `<h3>Parentheses Balance Check</h3><p>"${str}" is ${result ? '<strong style="color: var(--secondary-color);">balanced</strong>' : '<strong style="color: var(--accent-color);">not balanced</strong>'}</p>`;
+});
+
+function parenthesesBalanced(s) {
+    const stack = [];
+    const pairs = {
+        ')': '(',
+        ']': '[',
+        '}': '{'
+    };
+    
+    for (let char of s) {
+        if (char === '(' || char === '[' || char === '{') {
+            stack.push(char);
+        } else if (char === ')' || char === ']' || char === '}') {
+            if (stack.length === 0 || stack[stack.length - 1] !== pairs[char]) {
+                return false;
+            }
+            stack.pop();
+        }
+    }
+    
+    return stack.length === 0;
+}
+
+// Binary Search
+document.getElementById('bs-btn').addEventListener('click', () => {
+    const input = document.getElementById('bs-input').value;
+    const arr = input.split(' ').map(Number).filter(n => !isNaN(n));
+    const key = parseInt(document.getElementById('bs-key').value);
+    
+    if (arr.length === 0) {
+        alert('Please enter valid numbers!');
+        return;
+    }
+    
+    if (isNaN(key)) {
+        alert('Please enter a valid key!');
+        return;
+    }
+    
+    // Sort array if not sorted
+    const sorted = [...arr].sort((a, b) => a - b);
+    const index = binarySearch(sorted, key);
+    
+    let resultHtml = `<h3>Binary Search Result</h3>`;
+    resultHtml += `<p>Array: [${sorted.join(', ')}]</p>`;
+    resultHtml += `<p>Key: ${key}</p>`;
+    
+    if (index === -1) {
+        resultHtml += `<p>Result: Key <strong style="color: var(--accent-color);">not found</strong></p>`;
+    } else {
+        resultHtml += `<p>Result: Key found at index <strong style="color: var(--secondary-color);">${index}</strong></p>`;
+    }
+    
+    document.getElementById('bs-result').innerHTML = resultHtml;
+});
+
+function binarySearch(arr, key) {
+    let left = 0;
+    let right = arr.length - 1;
+    
+    while (left <= right) {
+        const mid = Math.floor(left + (right - left) / 2);
+        
+        if (arr[mid] === key) {
+            return mid;
+        } else if (arr[mid] < key) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+    
+    return -1;
+}
+
 // BST
 let bstRoot = null;
 
@@ -592,7 +741,69 @@ function visualizeBST() {
     container.innerHTML += '<pre>' + printTree(bstRoot) + '</pre>';
 }
 
-document.getElementById('bst-inorder').addEventListener('click', () => {
+// BST Operations
+document.getElementById('bst-insert').addEventListener('click', () => {
+    if (!bstRoot) {
+        alert('Please build a tree first!');
+        return;
+    }
+    const val = parseInt(document.getElementById('bst-insert-val').value);
+    if (isNaN(val)) {
+        alert('Please enter a valid value!');
+        return;
+    }
+    bstRoot = insertBST(bstRoot, val);
+    visualizeBST();
+    document.getElementById('bst-result').innerHTML = 
+        `<h3>Insert Operation</h3><p>Value ${val} inserted successfully</p>`;
+    document.getElementById('bst-insert-val').value = '';
+});
+
+document.getElementById('bst-delete').addEventListener('click', () => {
+    if (!bstRoot) {
+        alert('Please build a tree first!');
+        return;
+    }
+    const val = parseInt(document.getElementById('bst-delete-val').value);
+    if (isNaN(val)) {
+        alert('Please enter a valid value!');
+        return;
+    }
+    bstRoot = deleteBST(bstRoot, val);
+    visualizeBST();
+    document.getElementById('bst-result').innerHTML = 
+        `<h3>Delete Operation</h3><p>Value ${val} deleted</p>`;
+    document.getElementById('bst-delete-val').value = '';
+});
+
+document.getElementById('bst-search').addEventListener('click', () => {
+    if (!bstRoot) {
+        alert('Please build a tree first!');
+        return;
+    }
+    const val = parseInt(document.getElementById('bst-search-val').value);
+    if (isNaN(val)) {
+        alert('Please enter a valid value!');
+        return;
+    }
+    const found = searchBST(bstRoot, val);
+    document.getElementById('bst-result').innerHTML = 
+        `<h3>Search Operation</h3><p>Value ${val} is ${found ? '<strong style="color: var(--secondary-color);">found</strong>' : '<strong style="color: var(--accent-color);">not found</strong>'}</p>`;
+    document.getElementById('bst-search-val').value = '';
+});
+
+document.getElementById('bst-height').addEventListener('click', () => {
+    if (!bstRoot) {
+        alert('Please build a tree first!');
+        return;
+    }
+    const h = heightBST(bstRoot);
+    document.getElementById('bst-result').innerHTML = 
+        `<h3>Tree Height</h3><p>Height: <strong>${h}</strong></p>`;
+});
+
+// BST Traversals
+document.getElementById('bst-inorder-rec').addEventListener('click', () => {
     if (!bstRoot) {
         alert('Please build a tree first!');
         return;
@@ -600,10 +811,10 @@ document.getElementById('bst-inorder').addEventListener('click', () => {
     const result = [];
     inorder(bstRoot, result);
     document.getElementById('bst-result').innerHTML = 
-        `<h3>Inorder Traversal</h3><p>${result.join(' → ')}</p>`;
+        `<h3>Inorder Traversal (Recursive)</h3><p>${result.join(' → ')}</p>`;
 });
 
-document.getElementById('bst-preorder').addEventListener('click', () => {
+document.getElementById('bst-preorder-rec').addEventListener('click', () => {
     if (!bstRoot) {
         alert('Please build a tree first!');
         return;
@@ -611,10 +822,10 @@ document.getElementById('bst-preorder').addEventListener('click', () => {
     const result = [];
     preorder(bstRoot, result);
     document.getElementById('bst-result').innerHTML = 
-        `<h3>Preorder Traversal</h3><p>${result.join(' → ')}</p>`;
+        `<h3>Preorder Traversal (Recursive)</h3><p>${result.join(' → ')}</p>`;
 });
 
-document.getElementById('bst-postorder').addEventListener('click', () => {
+document.getElementById('bst-postorder-rec').addEventListener('click', () => {
     if (!bstRoot) {
         alert('Please build a tree first!');
         return;
@@ -622,7 +833,37 @@ document.getElementById('bst-postorder').addEventListener('click', () => {
     const result = [];
     postorder(bstRoot, result);
     document.getElementById('bst-result').innerHTML = 
-        `<h3>Postorder Traversal</h3><p>${result.join(' → ')}</p>`;
+        `<h3>Postorder Traversal (Recursive)</h3><p>${result.join(' → ')}</p>`;
+});
+
+document.getElementById('bst-inorder-iter').addEventListener('click', () => {
+    if (!bstRoot) {
+        alert('Please build a tree first!');
+        return;
+    }
+    const result = inorderIterative(bstRoot);
+    document.getElementById('bst-result').innerHTML = 
+        `<h3>Inorder Traversal (Iterative)</h3><p>${result.join(' → ')}</p>`;
+});
+
+document.getElementById('bst-preorder-iter').addEventListener('click', () => {
+    if (!bstRoot) {
+        alert('Please build a tree first!');
+        return;
+    }
+    const result = preorderIterative(bstRoot);
+    document.getElementById('bst-result').innerHTML = 
+        `<h3>Preorder Traversal (Iterative)</h3><p>${result.join(' → ')}</p>`;
+});
+
+document.getElementById('bst-postorder-iter').addEventListener('click', () => {
+    if (!bstRoot) {
+        alert('Please build a tree first!');
+        return;
+    }
+    const result = postorderIterative(bstRoot);
+    document.getElementById('bst-result').innerHTML = 
+        `<h3>Postorder Traversal (Iterative)</h3><p>${result.join(' → ')}</p>`;
 });
 
 function inorder(node, result) {
@@ -644,6 +885,112 @@ function postorder(node, result) {
     postorder(node.left, result);
     postorder(node.right, result);
     result.push(node.val);
+}
+
+// BST Helper Functions
+function findMinBST(root) {
+    while (root && root.left) {
+        root = root.left;
+    }
+    return root;
+}
+
+function deleteBST(root, val) {
+    if (!root) return null;
+    
+    if (val < root.val) {
+        root.left = deleteBST(root.left, val);
+    } else if (val > root.val) {
+        root.right = deleteBST(root.right, val);
+    } else {
+        // Node to delete found
+        if (!root.left) {
+            return root.right;
+        } else if (!root.right) {
+            return root.left;
+        } else {
+            // Node with two children
+            const temp = findMinBST(root.right);
+            root.val = temp.val;
+            root.right = deleteBST(root.right, temp.val);
+        }
+    }
+    
+    return root;
+}
+
+function searchBST(root, val) {
+    if (!root || root.val === val) {
+        return root !== null;
+    }
+    
+    if (val < root.val) {
+        return searchBST(root.left, val);
+    } else {
+        return searchBST(root.right, val);
+    }
+}
+
+function heightBST(root) {
+    if (!root) return -1;
+    return 1 + Math.max(heightBST(root.left), heightBST(root.right));
+}
+
+function inorderIterative(root) {
+    const result = [];
+    const stack = [];
+    let current = root;
+    
+    while (current || stack.length > 0) {
+        while (current) {
+            stack.push(current);
+            current = current.left;
+        }
+        current = stack.pop();
+        result.push(current.val);
+        current = current.right;
+    }
+    
+    return result;
+}
+
+function preorderIterative(root) {
+    const result = [];
+    if (!root) return result;
+    
+    const stack = [root];
+    
+    while (stack.length > 0) {
+        const current = stack.pop();
+        result.push(current.val);
+        
+        if (current.right) stack.push(current.right);
+        if (current.left) stack.push(current.left);
+    }
+    
+    return result;
+}
+
+function postorderIterative(root) {
+    const result = [];
+    if (!root) return result;
+    
+    const stack1 = [root];
+    const stack2 = [];
+    
+    while (stack1.length > 0) {
+        const current = stack1.pop();
+        stack2.push(current);
+        
+        if (current.left) stack1.push(current.left);
+        if (current.right) stack1.push(current.right);
+    }
+    
+    while (stack2.length > 0) {
+        result.push(stack2.pop().val);
+    }
+    
+    return result;
 }
 
 // Knapsack

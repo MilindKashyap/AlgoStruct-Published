@@ -386,6 +386,80 @@ section {
     background: var(--secondary-color);
 }
 
+/* String Controls */
+.string-controls {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.string-operation {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+}
+
+.string-operation h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.string-operation input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+/* Stack & Queue Controls */
+.stackqueue-controls {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+}
+
+.stackqueue-controls h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.stackqueue-controls p {
+    margin-bottom: 1rem;
+    color: var(--text-color);
+    opacity: 0.8;
+}
+
+.stackqueue-controls input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+/* Binary Search Controls */
+.binarysearch-controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.binarysearch-controls input {
+    padding: 0.75rem;
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
+    min-width: 250px;
+}
+
 /* BST Controls */
 .bst-controls {
     display: flex;
@@ -400,6 +474,33 @@ section {
     border: 2px solid var(--border-color);
     border-radius: 5px;
     min-width: 300px;
+}
+
+.bst-operations, .bst-traversals {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+}
+
+.bst-operations h3, .bst-traversals h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.bst-op-buttons, .bst-trav-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.bst-op-buttons input {
+    padding: 0.75rem;
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
+    width: 150px;
 }
 
 .tree-visualization {
